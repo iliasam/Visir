@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<mavlink>
+  <version>1</version>
+  <enums>
+    <enum name="MAV_DATA_REQUEST_ENUM">
+      <entry value="1" name="TEMPERATURE">
+        <description>Request teperature data</description>
+      </entry>
+    </enum>
+    <enum name="MAV_CMD_ENUM">
+      <entry value="1" name="IDLE">
+        <description>Idle cmd</description>
+      </entry>
+    </enum>
+  </enums>
+  <messages>
+    <message id="10" name="MAV_COMMAND_ACK">
+      <description>Ack message for some command, must be send when the command is received</description>
+      <field type="uint8_t" name="cmd_id">ID of the received command</field>
+      <field type="int32_t" name="result">Result of the command processing</field>
+    </message>
+    
+    <message id="11" name="MAV_DATA_REQUEST">
+      <description>Request for a certain data type</description>
+      <field type="uint8_t" name="tar_system_id">Target system ID</field>
+      <field type="uint8_t" name="tar_component_id">Target component ID</field>
+      <field type="uint8_t" name="data_type" enum="MAV_DATA_REQUEST_ENUM">Type of the needed data</field>
+    </message>
+    <message id="12" name="MAV_DEVICE_CMD">
+      <description>Command for the device</description>
+      <field type="uint8_t" name="tar_system_id">Target system ID</field>
+      <field type="uint8_t" name="tar_component_id">Target component ID</field>
+      <field type="uint8_t" name="cmd" enum="MAV_CMD_ENUM">Needed command</field>
+      <field type="uint32_t" name="parameter">Command parameter</field>
+    </message>
+    <message id="100" name="MAV_ROTATION_VECTOR_EULER">
+      <description>Magnetic vector</description>
+      <field type="float" name="roll">Roll, deg</field>
+      <field type="float" name="pitch">Pitch, deg</field>
+      <field type="float" name="yaw">Yaw, deg</field>
+      <field type="float" name="accur">Accuracy, deg</field>
+      <field type="uint8_t" name="state">State</field>
+    </message>
+    <message id="101" name="MAV_GAME_ROTATION_VECTOR_EULER">
+      <description>Gyroscope vector</description>
+      <field type="float" name="roll">Roll, deg</field>
+      <field type="float" name="pitch">Pitch, deg</field>
+      <field type="float" name="yaw">Yaw, deg</field>
+      <field type="float" name="accur">Accuracy, deg</field>
+      <field type="uint8_t" name="state">State</field>
+    </message>
+    <message id="102" name="MAV_QUATERNION">
+      <description>Quaternion</description>
+      <field type="float" name="x">X</field>
+      <field type="float" name="y">Y</field>
+      <field type="float" name="z">Z</field>
+      <field type="float" name="w">W</field>
+    </message>
+    <message id="103" name="MAV_BATT_STATE">
+      <description>Battery state</description>
+      <field type="uint8_t" name="state">State</field>
+      <field type="float" name="voltage">Voltage, V</field>
+    </message>
+    <message id="104" name="MAV_SET_CURSOR">
+      <description>Set cursor</description>
+      <field type="uint8_t" name="cursor_type">Cursor type</field>
+      <field type="int8_t" name="X">X</field>
+      <field type="int8_t" name="Y">Y</field>
+    </message>
+    <message id="105" name="MAV_SET_YAW_CORRECTION">
+      <description>Set yaw correction</description>
+      <field type="uint8_t" name="vector_type">Type of the vector</field>
+      <field type="float" name="value">Correction value, deg</field>
+    </message>
+    <message id="106" name="MAV_BUTTON_EVENT">
+      <description>Button event</description>
+      <field type="uint8_t" name="button_code">Code of the button</field>
+      <field type="uint8_t" name="event_code">Button event type</field>
+    </message>
+  </messages>
+</mavlink>
