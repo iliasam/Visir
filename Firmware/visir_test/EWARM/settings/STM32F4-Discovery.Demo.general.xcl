@@ -2,7 +2,7 @@
 
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armstlink2.dll" 
 
-"D:\MYPROGS\Visir\Firmware\visir1\visir_test\EWARM\Demo\Exe\STM32F4-Discovery_Demo.out" 
+"D:\GITHUB\Visir\Firmware\visir_test\EWARM\Demo\Exe\STM32F4-Discovery_Demo.out" 
 
 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armbat.dll" 
 

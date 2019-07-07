@@ -31,7 +31,7 @@ void hardware_init_all(void)
   
   hardware_dwt_init();
   hardware_backlight_init();
-  hardware_change_backlight(0, 30);//off
+  hardware_change_backlight(0, 20);//off
 }
 
 //Initialize main clock system

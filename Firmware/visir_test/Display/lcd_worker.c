@@ -245,6 +245,33 @@ void draw_black_line(uint16_t y)
   }
 }
 
+void draw_white_line(uint16_t y)
+{
+  uint16_t x_pos;
+  for (x_pos = 0; x_pos < LCD_RIGHT_OFFSET; x_pos++)
+  {
+    lcd_reset_pixel(x_pos, y);
+  }
+}
+
+void draw_horiz_line(uint16_t x1, uint16_t x2, uint16_t y)
+{
+  uint16_t x_pos;
+  for (x_pos = x1; x_pos <= x2; x_pos++)
+  {
+    lcd_set_pixel(x_pos, y);
+  }
+}
+
+void draw_vert_line(uint16_t x, uint16_t y1, uint16_t y2)
+{
+  uint16_t y_pos;
+  for (y_pos = y1; y_pos <= y2; y_pos++)
+  {
+    lcd_set_pixel(x, y_pos);
+  }
+}
+
 uint16_t get_font_width(uint8_t font)
 {
   switch (font)

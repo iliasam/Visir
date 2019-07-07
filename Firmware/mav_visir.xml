@@ -77,5 +77,14 @@
       <field type="uint8_t" name="button_code">Code of the button</field>
       <field type="uint8_t" name="event_code">Button event type</field>
     </message>
+    <message id="107" name="MAV_SET_VISIR_MODE">
+      <description>Set new mode of the visir</description>
+      <field type="uint8_t" name="mode_code">New visir mode</field>
+    </message>
+    <message id="108" name="MAV_SET_TARGET_POS">
+      <description>Set direction to the target</description>
+      <field type="float" name="yaw">Yaw, deg</field>
+      <field type="float" name="pitch">Pitch, deg</field>
+    </message>
   </messages>
 </mavlink>

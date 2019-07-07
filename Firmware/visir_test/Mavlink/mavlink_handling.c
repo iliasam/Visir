@@ -3,6 +3,7 @@
 #include "mavlink_handling.h"
 #include "mavlink.h"
 #include "bluetooth_comm.h"
+#include "visual_handling.h"
 
 // Defines ********************************************************************
 #define MAVLINK_VISIR_ID        1
@@ -15,6 +16,8 @@
 // Functions ******************************************************************
 void mavlink_send_message(mavlink_message_t *msg);
 void mavlink_parse_set_yaw_correction(mavlink_message_t* msg);
+void mavlink_parse_set_target_pos(mavlink_message_t* msg);
+void mavlink_parse_set_visir_mode(mavlink_message_t* msg);
 
 
 void mavlink_parse_byte(uint8_t value)
@@ -28,6 +31,14 @@ void mavlink_parse_byte(uint8_t value)
     {
       mavlink_parse_set_yaw_correction(&msg);
     }
+    if (msg.msgid == MAVLINK_MSG_ID_MAV_SET_TARGET_POS)
+    {
+      mavlink_parse_set_target_pos(&msg);
+    }
+    if (msg.msgid == MAVLINK_MSG_ID_MAV_SET_VISIR_MODE)
+    {
+      mavlink_parse_set_visir_mode(&msg);
+    }
   }
 }
 
@@ -37,6 +48,21 @@ void mavlink_parse_set_yaw_correction(mavlink_message_t* msg)
   mavlink_msg_mav_set_yaw_correction_decode(msg, &new_value);
   
   bno080_set_yaw_correction(new_value.vector_type, new_value.value);
+}
+
+void mavlink_parse_set_target_pos(mavlink_message_t* msg)
+{
+   mavlink_mav_set_target_pos_t new_pos;
+   mavlink_msg_mav_set_target_pos_decode(msg, &new_pos);
+   
+   visual_handling_set_target_pose(new_pos.yaw, new_pos.pitch);
+}
+
+void mavlink_parse_set_visir_mode(mavlink_message_t* msg)
+{
+  mavlink_mav_set_visir_mode_t new_mode;
+  mavlink_msg_mav_set_visir_mode_decode(msg, &new_mode);
+  visual_handling_set_mode(new_mode.mode_code);
 }
 
 void mavlink_send_rotation_vector(euler_angles_t* angles)

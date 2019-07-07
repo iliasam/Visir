@@ -11,6 +11,7 @@
 #include "power_controlling.h"
 #include "bno080_sensor_parsing.h"
 #include "keys_controlling.h"
+#include "visual_handling.h"
 
 
 /* Private typedef -----------------------------------------------------------*/
@@ -30,11 +31,6 @@ uint32_t timer_100ms = 0;
 // Variable to count 100 ms periods
 uint32_t timer_1000ms = 0;
 
-extern euler_angles_t euler_rotation_vector;
-extern euler_angles_t euler_game_rotation_vector;//gyro
-
-//extern uint8_t telescope_mode_enabled;
-extern uint8_t hardware_backlight_on;
 
 char tmp_str[32];
 
@@ -68,7 +64,7 @@ int main(void)
   keys_init();
   
   lcd_full_clear();
-  lcd_draw_string(" >< ", 27, 17, FONT_SIZE_11, 0);
+  //lcd_draw_string(" >< ", 27, 17, FONT_SIZE_11, 0);
   //lcd_draw_string("TEST1", 25, 22, FONT_SIZE_11, 0);
   //lcd_draw_string("100 M", 34, 30, FONT_SIZE_6, 0);
   //draw_black_line(27);
@@ -96,27 +92,10 @@ int main(void)
     if (TIMER_ELAPSED(timer_100ms))
     {
       START_TIMER(timer_100ms, 100);
-      
-      sprintf(tmp_str, "%.1f   ", euler_game_rotation_vector.yaw);
-      lcd_draw_string(tmp_str, 34, 7, FONT_SIZE_6, 0);
-
-      sprintf(tmp_str, "%.1f   ", euler_rotation_vector.yaw);
-      lcd_draw_string(tmp_str, 34, 35, FONT_SIZE_6, 0);
-
-      
-      //DISPLAY BACKLIGHT
-      if (hardware_backlight_on)
-      {
-        lcd_draw_string("B", 25, 20, FONT_SIZE_6, 0);
-      }
-      else
-      {
-        lcd_draw_string(" ", 25, 20, FONT_SIZE_6, 0);
-      }
-      
-      lcd_update();
+      visual_handling_update();
     }
-    
+      
+
     if (TIMER_ELAPSED(timer_1000ms))
     {
       START_TIMER(timer_1000ms, 1000);

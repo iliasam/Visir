@@ -981,6 +981,9 @@
     <file>
       <name>$PROJ_DIR$\..\Display\ST7567A.h</name>
     </file>
+    <file>
+      <name>$PROJ_DIR$\..\Display\visual_handling.c</name>
+    </file>
   </group>
   <group>
     <name>EWARM</name>
