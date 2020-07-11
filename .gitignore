@@ -57,3 +57,7 @@ dkms.conf
 /Debug
 *.tmp
 Firmware/visir_test/EWARM/Demo/
+PC_Code/mavlink_test1/.vs/
+PC_Code/mavlink_test1/bin/
+PC_Code/mavlink_test1/obj/
+PC_Code/mavlink_test1/packages/
