@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="80dp"
+		android:layout_weight="1"
+		android:orientation="horizontal">
+		<CheckBox
+			android:text="Cal. ON"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="10"
+			android:id="@+id/chkCalibOn" />
+		<CheckBox
+			android:text="User. ON"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="10"
+			android:id="@+id/chkUserOn" />
+		<CheckBox
+			android:text="Target"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:layout_weight="10"
+			android:id="@+id/chkTarget" />
+		<Button
+			android:text="GPS"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/btnUseGPS"
+			android:layout_weight="1"
+			android:background="#fffdd835" />
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="fill_parent"
+		android:layout_weight="1"
+		android:orientation="vertical"
+		android:minWidth="25px"
+		android:minHeight="25px">
+		<fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.MapFragment" />
+	</LinearLayout>
+
+</LinearLayout>

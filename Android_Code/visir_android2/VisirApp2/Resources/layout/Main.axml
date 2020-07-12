@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<Button
+		android:text="Connect"
+		android:layout_width="match_parent"
+		android:layout_height="65.5dp"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:id="@+id/btnConnect" />
+	<TextView
+		android:text="State: N/A"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtState"
+		android:textSize="24dp" />
+	<Space
+		android:layout_width="match_parent"
+		android:layout_height="38.5dp"
+		android:id="@+id/space1" />
+	<TableRow
+		android:id="@+id/hr1"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#444"/>
+	<TextView
+		android:text="Yaw (Game): N/A"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtYawGame"
+		android:textSize="24dp" />
+	<TextView
+		android:text="Pitch: N/A"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtPitch"
+		android:textSize="24dp" />
+	<TextView
+		android:text="Battery: N/A"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtBattery"
+		android:textSize="24dp" />
+	<LinearLayout
+		android:orientation="horizontal"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/linearLayout2">
+		<Button
+			android:text="Switch to OSM"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/btnSwitchToMap" />
+		<Button
+			android:text="Switch to GMAP"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/btnSwitchToGoogleMap" />
+	</LinearLayout>
+	<Button
+		android:text="Telescope mode"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/btnTelescopeMode" />
+	<LinearLayout
+		android:orientation="horizontal"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/linearLayout1">
+		<TextView
+			android:text="Calb Source:"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/textView1"
+			android:gravity="center" />
+		<RadioGroup
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/radioGroup1"
+			android:orientation="horizontal">
+			<RadioButton
+				android:text="Map 1"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:id="@+id/rbSourceMap1"
+				android:checked="true" />
+			<RadioButton
+				android:text="Map2"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:id="@+id/rbSourceMap2" />
+			<RadioButton
+				android:text="Telescope"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:id="@+id/rbSourceTelescope" />
+			
+		</RadioGroup>
+	</LinearLayout>
+
+</LinearLayout>

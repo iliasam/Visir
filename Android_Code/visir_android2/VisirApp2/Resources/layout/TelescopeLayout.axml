@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<TextView
+		android:text="RA: N/A h"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtRaHours"
+		android:textSize="24dp" />
+	<TextView
+		android:text="DEC: N/A deg"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtDECDeg"
+		android:textSize="24dp" />
+	<TextView
+		android:text="Server State: N/A"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtServerState"
+		android:textSize="24dp" />
+	<LinearLayout
+		android:orientation="horizontal"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/linearLayout1">
+		<TextView
+			android:text="Vert. correction:"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/textView1"
+			android:foregroundGravity="center"
+			android:gravity="center"
+			android:textSize="24dp"/>
+		<EditText
+			android:inputType="numberDecimal|numberSigned"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/editTextVertCorr"
+			android:hint="Degrees" 
+		 />
+	</LinearLayout>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/linearLayout1">
+		<TextView
+			android:text="Calib. azimuth:"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/textView1"
+			android:foregroundGravity="center"
+			android:gravity="center"
+			android:textSize="24dp"/>
+		<EditText
+			android:inputType="numberDecimal|numberSigned"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/editTextCalibAzimuth"
+			android:hint="Degrees" 
+		 />
+	</LinearLayout>
+</LinearLayout>
