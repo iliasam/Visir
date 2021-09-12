@@ -5,6 +5,9 @@ using Android.Graphics;
 using Android.OS;
 
 using Android.Widget;
+using BruTile;
+using BruTile.Predefined;
+using BruTile.Web;
 using Geodesy;
 using Mapsui;
 using Mapsui.Geometries;
@@ -18,6 +21,8 @@ using Mapsui.Widgets.ScaleBar;
 using Mapsui.Widgets.Zoom;
 using MavLink;
 using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Reflection;
 
 namespace VisirApp2
@@ -45,6 +50,8 @@ namespace VisirApp2
         SettingsClass SettingsSaver = new SettingsClass();
 
         public static Action<double> CalibrationAngleEvent;//callback - new calibration event
+
+
 
         //*********************************************************8
 
@@ -101,8 +108,17 @@ namespace VisirApp2
             //MAP
             _mapControl = FindViewById<MapControl>(Resource.Id.mapControl1);
 
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "VisirApp");
+            var osmAttribution = new Attribution("© OpenStreetMap contributors", "https://www.openstreetmap.org/copyright");
+            var osmSource = new HttpClientTileSource(httpClient, new GlobalSphericalMercator(), 
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", new[] { "a", "b", "c" }, 
+                name: "OpenStreetMap", attribution: osmAttribution);
+            var osmLayer = new TileLayer(osmSource) { Name = "OpenStreetMap" };
+
             Map map = new Map();
-            map.Layers.Add(OpenStreetMap.CreateTileLayer());
+            //map.Layers.Add(OpenStreetMap.CreateTileLayer());
+            map.Layers.Add(osmLayer);
 
             var sphericalMercatorCoordinate = SphericalMercator.FromLonLat(UserPosition.Longitude.Degrees, UserPosition.Latitude.Degrees);
             map.NavigateTo(sphericalMercatorCoordinate);
@@ -361,5 +377,27 @@ namespace VisirApp2
         {
             SettingsSaver.SaveCalib(CalibPosition.Latitude.Degrees, CalibPosition.Longitude.Degrees);
         }
+    }//end of class
+
+    internal class HttpClientTileSource : ITileSource
+    {
+        private readonly HttpClient _HttpClient;
+        private readonly HttpTileSource _WrappedSource;
+
+        public HttpClientTileSource(HttpClient httpClient, ITileSchema tileSchema, string urlFormatter, IEnumerable<string> serverNodes = null, string apiKey = null, string name = null, BruTile.Cache.IPersistentCache<byte[]> persistentCache = null, Attribution attribution = null)
+        {
+            _HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            _WrappedSource = new HttpTileSource(tileSchema, urlFormatter, serverNodes, apiKey, name, persistentCache, ClientFetch, attribution);
+        }
+
+        public ITileSchema Schema => _WrappedSource.Schema;
+
+        public string Name => _WrappedSource.Name;
+
+        public Attribution Attribution => _WrappedSource.Attribution;
+
+        public byte[] GetTile(TileInfo tileInfo) => _WrappedSource.GetTile(tileInfo);
+
+        private byte[] ClientFetch(Uri uri) => _HttpClient.GetByteArrayAsync(uri).ConfigureAwait(false).GetAwaiter().GetResult();
     }
 }
