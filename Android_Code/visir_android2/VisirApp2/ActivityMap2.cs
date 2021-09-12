@@ -17,7 +17,7 @@ namespace VisirApp2
     [Activity(Label = "ActivityMap2")]
     public class ActivityMap2 : Activity, IOnMapReadyCallback, GoogleMap.IOnMapClickListener
     {
-        double line_length = 15000;//meters
+        double line_length = 10000;//meters
 
         double currVisirDirDegMap2 = 0.0;//current visir direction
         double VisirTargetDirDegMap2 = 0.0;//visir target direction
