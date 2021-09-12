@@ -25,7 +25,7 @@ namespace VisirApp2
     [Activity(Label = "ActivityMap")]
     public class ActivityMap : Activity
     {
-        double line_length = 10000;//meters
+        double line_length = 15000;//meters
 
         double currVisirDirGeg = 0.0;//current visir direction
 
@@ -105,12 +105,13 @@ namespace VisirApp2
             map.Layers.Add(OpenStreetMap.CreateTileLayer());
 
             var sphericalMercatorCoordinate = SphericalMercator.FromLonLat(UserPosition.Longitude.Degrees, UserPosition.Latitude.Degrees);
-            map.NavigateTo(sphericalMercatorCoordinate);
-            map.NavigateTo(map.Resolutions[15]);
+            //map.NavigateTo(sphericalMercatorCoordinate);
+            //map.NavigateTo(map.Resolutions[15]);
+            _mapControl.Navigator.NavigateTo(sphericalMercatorCoordinate, map.Resolutions[15]);
 
             _mapControl.Map = map;
 
-            map.Widgets.Add(new ZoomInOutWidget(map) { MarginX = 20, MarginY = 20, HorizontalAlignment = Mapsui.Widgets.HorizontalAlignment.Left, VerticalAlignment = Mapsui.Widgets.VerticalAlignment.Top });
+            map.Widgets.Add(new ZoomInOutWidget() { MarginX = 20, MarginY = 20, HorizontalAlignment = Mapsui.Widgets.HorizontalAlignment.Left, VerticalAlignment = Mapsui.Widgets.VerticalAlignment.Top });
             map.Widgets.Add(new Mapsui.Widgets.ScaleBar.ScaleBarWidget(map) { TextAlignment = Mapsui.Widgets.Alignment.Center, HorizontalAlignment = Mapsui.Widgets.HorizontalAlignment.Center, VerticalAlignment = Mapsui.Widgets.VerticalAlignment.Top });
 
             lineLayer = new MemoryLayer
@@ -136,7 +137,8 @@ namespace VisirApp2
             map.Layers.Add(UserPosPointsLayer);
             map.Layers.Add(CalibPointsLayer);
 
-            map.Info += Map_Info;
+            //map.Info += Map_Info; old
+            _mapControl.Info += Map_Info;
         }
 
 
